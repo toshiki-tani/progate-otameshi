@@ -1,21 +1,21 @@
 # mtg-app-web
 
-## Project setup
+## はじめにやること
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### サーバー起動
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+### ビルド
 ```
 yarn build
 ```
 
-### Lints and fixes files
+### 変なコードないかチェック
 ```
 yarn lint
 ```
