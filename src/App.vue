@@ -5,30 +5,27 @@ const msg = ref('hello')
 </script>
 
 <template>
-<div class="all">
+<div class="progate-top">
   <div>{{msg}}</div>
   
   <div class="header">
-    <div class="logo-tag">
       <div class="progate-logo">
         <img src="@/assets/typo_logo-b40bf595603dc0e63a5c..svg" alt="progate-ロゴ">
       </div>
       <div class="header-tag">
-        <a href="">法人プラン</a>
+        <a href="" class="header-tag-link">法人プラン</a>
         <div>
-          <a @click="showLanguage">言語</a>
-          <a>{{msg}}</a>
-          <a>{{msg}}</a>
+          <a @click="showLanguage" class="header-tag-link">言語</a>
+          <a class="header-tag-link">{{msg}}</a>
+          <a class="header-tag-link">{{msg}}</a>
         </div>
-        
-        <a href="">ログイン</a>
-        <a href="">無料会員登録</a>
+        <a href="" class="header-tag-link">ログイン</a>
+        <a href="" class="header-tag-link">無料会員登録</a>
       </div>
-    </div>
   </div>
 
   <div class="main">
-     <div class="main1">
+     <div class="introduction">
        <h1>プログラミングで<br>人生の可能性を広げよう</h1>
        <div class="user-country">
           <div class="user">
@@ -40,9 +37,7 @@ const msg = ref('hello')
             <span>提供国数 100+</span>
           </div>
        </div>
-       <div class="start-bottom">
-         <a href="">今すぐにはじめる</a>
-       </div> 
+       <button class='start-bottom'>今すぐにはじめる</button>
        <div class="img-w100">
          <img src="@/assets/first_view_ja-ab351ae2e2501cc8bff6..webp" alt="user-ロゴ">
        </div>
@@ -67,7 +62,7 @@ const msg = ref('hello')
         <p>「創れる人」になるために必要なレッスンを最適な順番で学ぶことができます。<br>最終的には自分自身でエラーを解決して、目標に向かって自ら走りきる能力が身につきます。</p>
      </div>
 
-     <div class="successStory">
+     <div class="success-story">
         <h1>サクセスストーリー</h1>
         <p>プログラミングの世界への第一歩を踏み出し、夢を実現した方々のサクセスストーリーを紹介します。</p>
         <div class="person">
@@ -123,69 +118,69 @@ const msg = ref('hello')
       <a href="">もっと見る</a>
     </div>
 
-        <div class="plan">
+        <div class="course-plan">
 
-          <div class="find">
+          <div class="find-lesson">
             <div class="img2">
               <img src="@/assets/plan_section_main-3a91657a6381dac7469a..webp" alt="findイメージ">
             </div>
-            <div class="findMoji">
+            <div class="find-lesson-moji">
               <h2>あなたに合ったレッスンがきっと見つかる</h2>
               <p>全16コース・79レッスン</p>
             </div>
           </div>
           <div class="free-plus">
-            <div class="free">
+            <div class="free-plan">
               <h2>無料プラン</h2>
               <p>プログラミングに触れ<br>「基礎」を身につける</p>
               <h3>基礎レベルの16レッスン<br>(各コースの最初のレッスン+a)</h3>
               <h2>¥0</h2>
             </div>
-            <div class="plus">
+            <div class="plus-plan">
               <h2>プラスプラン</h2>
               <p>「応用」と「実践」で<br>「基礎」を身につける</p>
               <h3><br>公開中の79レッスンすべて</h3>
               <h2>税込¥1,078/月</h2>
             </div>
           </div>
-          <div class="lesson">
+          <div class="lesson-information">
              <a href="">レッスンの公開状況</a>
           </div>
         </div>
 
-        <div class="appli">
-          <div class="appli-title">
+        <div class="application">
+          <div class="application-title">
             <h1>アプリでも、Progate</h1>
-          <p>「まずは気軽に始めてみたい」という方にオススメです。</p>
+            <p>「まずは気軽に始めてみたい」という方にオススメです。</p>
           </div>
-          <div class="appli-moji-img">
-            <div class="appli-moji">
+          <div class="application-moji-img">
+            <div class="application-moji">
               <h3>いつでもどこでもプログラミング</h3>
-              <p>まとまった時間がなくても大丈夫。アプリならスマホゲーム感覚で楽しく始められます。</p>
+              <p class="application-moji-paragraph">まとまった時間がなくても大丈夫。アプリならスマホゲーム感覚で楽しく始められます。</p>
               <h3>アプリならではの学習体験</h3>
               <p>スマホやタブレットの画面に最適化したスライドとキーボードを用意しています。アプリ版でサクっと理解したら、Web版で本格的に実践するのがオススメです。</p>
-              <div class="downlode">
+              <div class="download">
                 <a href="https://apps.apple.com/jp/app/yahoo-%E3%83%A1%E3%83%BC%E3%83%AB/id669931877?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-09-18&kind=iossoftware&bubble=ios_apps) no-repeat;width:200px;height:60px;background-size: contain;"></a>
                 <a href="https://play.google.com/store/apps/details?id=com.yuyosoft.globalspy&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Google Play で手に入れよう" src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png" width="200" style='margin-top:-32px;' ></a>
               </div>  
             </div>
-            <div class="appli-img">
-              <img src="@/assets/app_image_jp-f23938d3a983c54af93e..webp" alt="appli-イメージ">
+            <div class="application-img">
+              <img src="@/assets/app_image_jp-f23938d3a983c54af93e..webp" alt="application-イメージ">
             </div>
           </div>
         </div>
 
-        <div class="create">
+        <div class="make-creater">
           <h1>初心者から、創れる人を生み出す</h1>
           <p>初心者でも独学で、挫折せずに学べること。<br>そして、本物のスキルが身につき 「創れる」ようになること。</p>
           <p>プログラミングで夢を叶えたい人が、本当に夢を叶えられるように、<br>私たちはこんな思いをProgateに込めています。</p>
           <p>プログラミングの世界へ踏み出すあなたを、私たちがサポートします。</p>
         </div>
 
-        <div class="start">
+        <div class="lets-start">
           <h1>さっそく始めよう</h1>
-          <p>1分後、プログラミングの世界でお会いしましょう。</p>
-          <a href="">無料会員登録</a>
+          <p class="lets-start-paragraph">1分後、プログラミングの世界でお会いしましょう。</p>
+          <button class='start-bottom'>無料会員登録</button>
         </div>
 
         <div class="twi-face">
@@ -206,37 +201,37 @@ const msg = ref('hello')
       <div class="progate-logo">
         <img src="@/assets/typo_logo-b40bf595603dc0e63a5c..svg" alt="progate-ロゴ">
       </div>
-      <p>アプリ版のダウンロードはこちら</p>
-      <div class="downlodIos-logo">
+      <p class="footer-paragraph">アプリ版のダウンロードはこちら</p>
+      <div class="downlod-ios-logo">
         <img src="@/assets/download-ios-701013f2027553d61911..svg" alt="ios-ロゴ">
       </div>
-      <div class="downlodeAndroid-logo">
+      <div class="download-android-logo">
         <img src="@/assets/download-android-2469951b8a1091077c28..svg" alt="android-ロゴ">
       </div>
-      <p>© 2014 Progate, Inc.</p>
+      <p class="footer-paragraph">© 2014 Progate, Inc.</p>
     </div>
 
     <div class="left2">
       <h4>サービス</h4>
-      <a href="">コース一覧</a>
-      <a href="">有料会員プラン</a>
-      <a href="">中学・高校向けプラン</a>
-      <a href="">学習ロードマップ</a>
-      <a href="">サクセスストーリー</a>
-      <a href="">ヘルプ</a>
+      <a href="" class="footer-link">コース一覧</a>
+      <a href="" class="footer-link">有料会員プラン</a>
+      <a href="" class="footer-link">中学・高校向けプラン</a>
+      <a href="" class="footer-link">学習ロードマップ</a>
+      <a href="" class="footer-link">サクセスストーリー</a>
+      <a href="" class="footer-link">ヘルプ</a>
     </div>
 
     <div class="left3">
       <h4>サポート</h4>
-      <a href="">運営会社</a>
-      <a href="">採用情報</a>
-      <a href="">利用規約</a>
-      <a href="">法人プラン利用規約</a>
-      <a href="">特定商取引法に基づく表示</a>
-      <a href="">プライバシーポリシー</a>
+      <a href="" class="footer-link">運営会社</a>
+      <a href="" class="footer-link">採用情報</a>
+      <a href="" class="footer-link">利用規約</a>
+      <a href="" class="footer-link">法人プラン利用規約</a>
+      <a href="" class="footer-link">特定商取引法に基づく表示</a>
+      <a href="" class="footer-link">プライバシーポリシー</a>
       <h4>SNS</h4>
-      <a href="">Facebook</a>
-      <a href="">Twitter</a>
+      <a href="" class="footer-link">Facebook</a>
+      <a href="" class="footer-link">Twitter</a>
     </div>
     
     <div class="left4">
@@ -244,7 +239,7 @@ const msg = ref('hello')
       <div class="biz-logo">
         <img src="@/assets/biz_logo_ja-98cf7067364efcd4f1899de2266450871bcdd0a0c617517ac3ae738aaa340963.svg" alt="biz-ロゴ">
       </div>
-      <p>企業のプログラミング研修を支援する、法人のお客様向けの利用プランです。</p>
+      <p class="footer-paragraph">企業のプログラミング研修を支援する、法人のお客様向けの利用プランです。</p>
     </div>
 
   </div>
@@ -259,10 +254,10 @@ const msg = ref('hello')
 
 <style scoped>
 
-.all{
+.progate-top{
   max-width: 1440px;
 }
-.all a{
+a{
   text-decoration: none;
   color: #6783a0;
 }
@@ -274,21 +269,19 @@ p{
   width: 112px;
   height: 30px;
 }
-.logo-tag{
-  display: flex;
-}
+
 .header{
   background-color: #f9fbfe;
   width: 100%;
-}
-.logo-tag{
+  display: flex;
   padding: 24px 32px;
   margin: 0 auto;
 }
+
 .header-tag{
   margin-left:auto;
 }
-.header-tag a{
+.header-tag-link{
   margin-left: 32px;
 }
 .asignBottom{
@@ -301,7 +294,7 @@ p{
 .main{
   background-color: #f9fbfe;
 }
-.main1{
+.introduction{
   text-align: center;
   background-color: #f9fbfe;
 }
@@ -312,12 +305,20 @@ p{
 .user , .country{
   margin: 10px 10px 70px 10px;
 }
-.start-bottom a{
+.start-bottom{
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   background-color:rgb(48, 200, 214) ;
   color: rgb(255, 255, 255);
   border-radius: 5px;
   padding: 20px 50px;
-  margin-top: 70px;
+  border: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0ccef0; /* 背景色 */
 }
 .img-w100 img{
   width: 100%;
@@ -334,13 +335,13 @@ p{
   margin-top:30px;
 }
 
-.successStory{
+.success-story{
   background-color: #2b546a;
   text-align: center;
   width: 100%;
 
 }
-.successStory h1{
+.success-story h1{
   padding: 60px 0 10px 0;
 }
 .person{
@@ -366,8 +367,7 @@ p{
   width: 40%;
 }
 
-
-.find{
+.find-lesson{
   width: 80%;
   display: flex;
   background-color: #f0f4f9;
@@ -377,15 +377,14 @@ p{
 .img2{
   width: 40%;
 }
-.findMoji{
+.find-lesson-moji{
   width: 60%;
   margin: auto auto auto 60px;
-  
 }
 .img2 img{
   width: 100%;
 }
-.findMoji h2 , p{
+.find-lesson-moji h2{
   width: 80%;
 }
 
@@ -394,72 +393,65 @@ p{
   width: 80%;
   margin: 0 auto;
 }
-.free{
+.free-plan{
   background-color: #f0f4f9;
   border-radius: 5%;
   width: 47%;
   text-align: center;
 }
-.plus{
+.plus-plan{
   background-color: #f7edad;
   border-radius: 5%;
   width: 47%;
   margin-left: auto;
   text-align: center;
 }
-.lesson{
+.lesson-information{
   width: 80%;
   margin: 0 auto;
 }
-.appli{
+.application{
   width: 80%;
   margin: 0 auto;
 }
-.appli-title{
+.application-title{
   text-align: center;
 }
-.appli-moji-img{
+.application-moji-img{
   display: flex;
   background-color: #90c3f0;
   border-radius: 5%;
   padding: 50px;
   margin-top: 40px;
 }
-.appli-moji{
+.application-moji{
   width: 50%;
   margin: 40px auto;
 }
-.appli-moji p{
+.application-moji-paragraph{
   margin: 0%;
 }
 
 
-.appli-img{
+.application-img{
   width: 50%;
   margin: 40px auto 0 auto;
 }
-.appli-img img{
+.application-img img{
   width: 90%;
 }
 
-.create{
+.make-creater{
   text-align: center;
   margin: 60px auto;
 }
 
-.start{
+.lets-start{
   text-align: center;
   margin: 60px auto;
 }
-.start p{
+.lets-start-paragraph{
   margin-bottom:50px ;
-}
-.start a{
-  background-color:rgb(48, 200, 214) ;
-  color: rgb(255, 255, 255);
-  border-radius: 5px;
-  padding: 20px 50px;
-  margin-top: 70px;
 }
 
 .twi-face{
@@ -476,10 +468,10 @@ p{
   margin: 40px auto;
   width: 80%;
 }
-.footer a{
+.footer-link{
   display: block;
 }
-.footer p{
+.footer-paragraph{
   margin: 0%;
 }
 .left1{
