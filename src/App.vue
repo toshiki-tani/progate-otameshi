@@ -124,7 +124,7 @@ const msg = ref('hello')
             <div class="img2">
               <img src="@/assets/plan_section_main-3a91657a6381dac7469a..webp" alt="findイメージ">
             </div>
-            <div class="find-lesson-moji">
+            <div class="findText">
               <h2>あなたに合ったレッスンがきっと見つかる</h2>
               <p>全16コース・79レッスン</p>
             </div>
@@ -153,8 +153,8 @@ const msg = ref('hello')
             <h1>アプリでも、Progate</h1>
             <p>「まずは気軽に始めてみたい」という方にオススメです。</p>
           </div>
-          <div class="application-moji-img">
-            <div class="application-moji">
+          <div class="appli-Text-img">
+            <div class="appli-Text">
               <h3>いつでもどこでもプログラミング</h3>
               <p class="application-moji-paragraph">まとまった時間がなくても大丈夫。アプリならスマホゲーム感覚で楽しく始められます。</p>
               <h3>アプリならではの学習体験</h3>
@@ -377,7 +377,7 @@ button:hover {
 .img2{
   width: 40%;
 }
-.find-lesson-moji{
+.findText{
   width: 60%;
   margin: auto auto auto 60px;
 }
@@ -417,21 +417,21 @@ button:hover {
 .application-title{
   text-align: center;
 }
-.application-moji-img{
+
+.appli-Text-img{
   display: flex;
   background-color: #90c3f0;
   border-radius: 5%;
   padding: 50px;
   margin-top: 40px;
 }
-.application-moji{
+.appli-Text{
   width: 50%;
   margin: 40px auto;
 }
-.application-moji-paragraph{
+.appli-Text p{
   margin: 0%;
 }
-
 
 .application-img{
   width: 50%;
