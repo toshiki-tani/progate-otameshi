@@ -1,13 +1,80 @@
 <script setup>
 import { ref } from "vue";
 
-const msg = ref("hello");
+const isOpen = ref(false);
+const open = () => {
+  isOpen.value = !isOpen.value;
+};
+const items = ref([
+  {
+    url: "#",
+    name: "法人プラン",
+  },
+  {
+    url: "#",
+    name: "言語",
+    children: [
+      {
+        url: "#",
+        name: "日本語",
+      },
+      {
+        url: "#",
+        name: "英語",
+      },
+    ],
+  },
+  {
+    url: "#",
+    name: "ログイン",
+  },
+  {
+    url: "#",
+    name: "無料会員登録",
+  },
+]);
+const humanDatas = ref([
+  {
+    name: "茂木優太",
+    message:
+      "「プログラミングで人生180度変わった。」小学生がJavaScriptでゲーム開発するようになるまで ",
+    url: require("@/assets/1570587077399.png"),
+  },
+  {
+    name: "林亮輔",
+    message:
+      "「プログラミングはもうやりたくなかったけど必要に迫られて」 mikanグロースハッカーの超実践SQL活用法",
+    url: require("@/assets/1566914605258.png"),
+  },
+  {
+    name: "十時健吾",
+    message:
+      "「私、プログラミングできるかも。」アプリ版Progateから2ヶ月で、アイドルからエンジニアに転職した話",
+    url: require("@/assets/1565058933263.png"),
+  },
+  {
+    name: "半澤拓実",
+    message:
+      "「起業準備はProgateしかしてません」 YOUTRUST代表岩崎由夏のプログラミング勉強法",
+    url: require("@/assets/1561420948224.jpeg"),
+  },
+  {
+    name: "藤澤大成",
+    message:
+      "「夢みていたところで働けるのは幸せです」プログラミング未経験者が憧れのBASEで働くまで",
+    url: require("@/assets/1560417815612.jpeg"),
+  },
+  {
+    name: "中原一馬",
+    message:
+      "「教育現場にエンジニア経験を還元したい!」元小学校教員エンジニアが叶えたい夢とは",
+    url: require("@/assets/1560417763917.jpeg"),
+  },
+]);
 </script>
 
 <template>
   <div class="progate-top">
-    <div>{{ msg }}</div>
-
     <div class="header">
       <div class="progate-logo">
         <img
@@ -16,14 +83,24 @@ const msg = ref("hello");
         />
       </div>
       <div class="header-tag">
-        <a href="" class="header-tag-link">法人プラン</a>
-        <div>
-          <a @click="showLanguage" class="header-tag-link">言語</a>
-          <a class="header-tag-link">{{ msg }}</a>
-          <a class="header-tag-link">{{ msg }}</a>
-        </div>
-        <a href="" class="header-tag-link">ログイン</a>
-        <a href="" class="header-tag-link">無料会員登録</a>
+        <ul>
+          <li v-for="(item, i) in items" :key="i">
+            <a :href="item.url" v-if="!item.children">
+              {{ item.name }}
+            </a>
+            <span v-else v-on:click="open">
+              {{ item.name }}
+
+              <ul class="dropdown" :class="{ isOpen }">
+                <li v-for="(child, i) in item.children" :key="i">
+                  <a :href="child.url">
+                    {{ child.name }}
+                  </a>
+                </li>
+              </ul>
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -95,65 +172,13 @@ const msg = ref("hello");
           プログラミングの世界への第一歩を踏み出し、夢を実現した方々のサクセスストーリーを紹介します。
         </p>
         <div class="person">
-          <div class="box">
+          <div v-for="(humanData, i) of humanDatas" :key="i" class="box">
             <div class="story">
-              <img src="@/assets/1570587077399.png" alt="村尾くん" />
-              <p>
-                「プログラミングで人生180度変わった。」小学生がJavaScriptでゲーム開発するようになるまで
+              <img v-bind:src="humanData.url" alt="個人写真" />
+              <p class="human-message">
+                {{ humanData.message }}
               </p>
-              <p>村尾くん</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1566914605258.png" alt="飯田さん" />
-              <p>
-                「プログラミングはもうやりたくなかったけど必要に迫られて」 mikan
-                グロースハッカーの超実践SQL活用法
-              </p>
-              <p>飯田 諒</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1565058933263.png" alt="五十嵐さん" />
-              <p>
-                「私、プログラミングできるかも。」アプリ版Progateから2ヶ月で、アイドルからエンジニアに転職した話
-              </p>
-              <p>五十嵐 夏菜</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1561420948224.jpeg" alt="岩崎さん" />
-              <p>
-                「起業準備はProgateしかしてません」 YOUTRUST代表
-                岩崎由夏のプログラミング勉強法
-              </p>
-              <p>岩崎 由夏</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1560417815612.jpeg" alt="三佐和さん" />
-              <p>
-                「夢みていたところで働けるのは幸せです」プログラミング未経験者が憧れのBASEで働くまで
-              </p>
-              <p>三佐和 千鶴</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1560417763917.jpeg" alt="三浦さん" />
-              <p>
-                「教育現場にエンジニア経験を還元したい!」元小学校教員エンジニアが叶えたい夢とは
-              </p>
-              <p>三浦卓馬</p>
+              <p class="human-name">{{ humanData.name }}</p>
               <p>japan</p>
             </div>
           </div>
@@ -169,7 +194,7 @@ const msg = ref("hello");
               alt="findイメージ"
             />
           </div>
-          <div class="find-lesson-text">
+          <div class="find-lesson-moji">
             <h2>あなたに合ったレッスンがきっと見つかる</h2>
             <p>全16コース・79レッスン</p>
           </div>
@@ -198,10 +223,10 @@ const msg = ref("hello");
           <h1>アプリでも、Progate</h1>
           <p>「まずは気軽に始めてみたい」という方にオススメです。</p>
         </div>
-        <div class="application-text-img">
-          <div class="application-text">
+        <div class="application-moji-img">
+          <div class="application-moji">
             <h3>いつでもどこでもプログラミング</h3>
-            <p class="application-text-paragraph">
+            <p class="application-moji-paragraph">
               まとまった時間がなくても大丈夫。アプリならスマホゲーム感覚で楽しく始められます。
             </p>
             <h3>アプリならではの学習体験</h3>
@@ -344,6 +369,10 @@ const msg = ref("hello");
 </template>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 .progate-top {
   max-width: 1440px;
 }
@@ -355,27 +384,80 @@ p {
   margin: 0 auto;
 }
 
-.progate-logo {
-  width: 112px;
-  height: 30px;
-}
-
 .header {
   background-color: #f9fbfe;
-  width: 100%;
+
   display: flex;
   padding: 24px 32px;
   margin: 0 auto;
 }
 
+.progate-logo {
+  width: 112px;
+  height: 30px;
+}
+
 .header-tag {
   margin-left: auto;
 }
-.header-tag-link {
-  margin-left: 32px;
+.header-tag > ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
+.header-tag > ul > li > a {
+  display: block;
+  height: auto;
+  padding: 20px;
+  color: black;
+  text-decoration: none;
+}
+.header-tag > ul > li > span {
+  position: relative;
+  display: block;
+  height: auto;
+  padding: 20px;
+  color: black;
+  text-decoration: none;
+}
+.header-tag > ul > li > span:after {
+  content: "▼";
+  display: inline-block;
+  transform: rotate(90deg);
+}
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  padding: 0;
+  list-style-type: none;
+  background-color: white;
+  transition: 0.3s;
+}
+.dropdown a:hover {
+  background-color: rgb(240, 244, 249); /* 背景色 */
+}
+
+.dropdown li {
+  width: 140px;
+  /* border-bottom: 1px solid #fff; */
+}
+
+.dropdown li a {
+  display: block;
+  padding: 10px 30px;
+  color: black;
+  text-decoration: none;
+}
+
+.isOpen {
+  display: block;
+}
+
 .asignBottom {
-  background-color: rgb(48, 200, 214);
+  background-color: rgb(223, 232, 233);
   background-size: 110px 40px;
   width: 110px;
   height: 40px;
@@ -467,14 +549,14 @@ button:hover {
 .img2 {
   width: 40%;
 }
-.find-lesson-text {
+.find-lesson-moji {
   width: 60%;
   margin: auto auto auto 60px;
 }
 .img2 img {
   width: 100%;
 }
-.find-lesson-text h2 {
+.find-lesson-moji h2 {
   width: 80%;
 }
 
@@ -507,18 +589,18 @@ button:hover {
 .application-title {
   text-align: center;
 }
-.application-text-img {
+.application-moji-img {
   display: flex;
   background-color: #90c3f0;
   border-radius: 5%;
   padding: 50px;
   margin-top: 40px;
 }
-.application-text {
+.application-moji {
   width: 50%;
   margin: 40px auto;
 }
-.application-text-paragraph {
+.application-moji-paragraph {
   margin: 0%;
 }
 
