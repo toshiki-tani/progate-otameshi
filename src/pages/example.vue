@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import ProgateIcon from "@/assets/svg/progate.svg";
 
 const isShow = ref(false);
 const handleClick = () => {
@@ -32,6 +33,7 @@ const humanDatas = ref([
     <div v-else>
       <p>現在，表示は{{ isShow }}です</p>
     </div>
+    <ProgateIcon class="progate-icon" />
   </div>
 </template>
 
@@ -45,5 +47,9 @@ const humanDatas = ref([
 }
 .example-text {
   margin-left: 50px;
+}
+.progate-icon {
+  width: 24px;
+  height: 24px;
 }
 </style>
