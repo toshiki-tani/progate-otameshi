@@ -20,7 +20,7 @@ const humanDatas = ref([
     <button @click="handleClick" class="example-btn">クリック</button>
     <div v-if="isShow">
       <p>ボタンを押した</p>
-      <p>現在，表示は{{ isShow }}です</p>
+      <p>現在,表示は{{ isShow }}です</p>
       <div
         v-for="(humanData, i) of humanDatas"
         :key="i"
@@ -31,7 +31,7 @@ const humanDatas = ref([
       </div>
     </div>
     <div v-else>
-      <p>現在，表示は{{ isShow }}です</p>
+      <p>現在,表示は{{ isShow }}です</p>
     </div>
     <ProgateIcon class="progate-icon" />
   </div>
