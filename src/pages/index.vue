@@ -398,7 +398,6 @@ button {
   background-color: #f9fbfe;
   display: flex;
   padding: 10px 28px;
-  /* margin: 0 auto; */
   left: 0%;
   position: fixed;
   width: 100%;
