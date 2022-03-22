@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import ProgateIcon from "@/assets/svg/progate.svg";
+import BaseButton from "@/components/atoms/BaseButton";
 
 const isShow = ref(false);
 const handleClick = () => {
@@ -17,7 +18,7 @@ const humanDatas = ref([
 
 <template>
   <div class="example">
-    <button @click="handleClick" class="example-btn">クリック</button>
+    <BaseButton @onClick="handleClick" text="クリック" />
     <div v-if="isShow">
       <p>ボタンを押した</p>
       <p>現在，表示は{{ isShow }}です</p>
@@ -34,6 +35,7 @@ const humanDatas = ref([
       <p>現在，表示は{{ isShow }}です</p>
     </div>
     <ProgateIcon class="progate-icon" />
+    <BaseButton @onClick="handleClick" text="使いまわせるぜ" />
   </div>
 </template>
 
