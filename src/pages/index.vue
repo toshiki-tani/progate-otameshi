@@ -15,18 +15,24 @@ import LaunchIcon from "@/assets/svg/launch_black.svg";
 
 const isOpen = ref(false);
 
-const open = () => {
+const clickMenu = () => {
   isOpen.value = !isOpen.value;
   console.log("click発動");
 };
 
-const close = () => {
+const clickClose = () => {
   isOpen.value = false;
   console.log("blur発動");
 };
 
+const onClickButton = () => {
+  location.href = "#";
+  console.log("ckick発動");
+};
+
 const onClick = (url) => {
-  location.href(url);
+  location.href = url;
+  console.log("ckick発動");
 };
 
 const items = ref([
@@ -120,8 +126,8 @@ const humanDatas = ref([
             </button>
             <button
               v-else
-              @click="open"
-              @blur="close"
+              @click="clickMenu"
+              @blur="clickClose"
               class="header-tag-button"
             >
               {{ item.name }}<span><ArrowDown class="arrow-down-icon" /></span>
@@ -139,16 +145,18 @@ const humanDatas = ref([
 
     <div class="main">
       <div class="introduction">
-        <h1 class="text-48px">プログラミングで<br />人生の可能性を広げよう</h1>
+        <h1 class="introduction-text">
+          プログラミングで<br />人生の可能性を広げよう
+        </h1>
         <div class="user-country">
           <UserIcon class="user-icon" />
-          <span>2,500,000ユーザー&nbsp;&nbsp;&nbsp;</span>
+
+          <span class="user-margin-right">2,500,000ユーザー</span>
 
           <CountryIcon class="country-icon" />
-
           <span>提供国数 100+</span>
         </div>
-        <button onclick="location.href='#'" class="start-bottom">
+        <button @click="onClickButton" class="start-bottom">
           今すぐにはじめる
         </button>
         <div class="img-w100">
@@ -214,9 +222,7 @@ const humanDatas = ref([
           </div>
         </div>
 
-        <button onclick="location.href='#'" class="more-button">
-          もっと見る
-        </button>
+        <button @click="onClickButton" class="more-button">もっと見る</button>
       </div>
 
       <div class="course-plan">
@@ -304,7 +310,7 @@ const humanDatas = ref([
         <p class="lets-start-paragraph">
           1分後、プログラミングの世界でお会いしましょう。
         </p>
-        <button onclick="location.href='#'" class="start-bottom">
+        <button @click="onClickButton" class="start-bottom">
           無料会員登録
         </button>
       </div>
@@ -369,7 +375,7 @@ const humanDatas = ref([
     </div>
 
     <div class="mail-box">
-      <button onclick="location.href='#'" class="mail-box-button">
+      <button @click="onClickButton" class="mail-box-button">
         <MailIcon class="mail-icon" />ご意見箱
       </button>
     </div>
@@ -446,7 +452,6 @@ button {
 .header-tag li:nth-of-type(4) {
   background-color: #8be0e6;
   border-radius: 10%;
-  /* pointer-events: none; */
 }
 .header-tag li:nth-of-type(4) button {
   color: white;
@@ -508,10 +513,16 @@ button {
   text-align: center;
   background-color: #f9fbfe;
 }
+.introduction-text {
+  font-size: 48px;
+}
 
 .user-country {
   display: flex;
   justify-content: center;
+}
+.user-margin-right {
+  margin-right: 20px;
 }
 .user,
 .country {
