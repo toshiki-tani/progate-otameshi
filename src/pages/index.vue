@@ -1,52 +1,164 @@
 <script setup>
 import { ref } from "vue";
 
-const msg = ref("hello");
+import ProgateIcon from "@/assets/svg/progate-icon.svg";
+import ArrowDown from "@/assets/svg/arrow_drop_down.svg";
+import UserIcon from "@/assets/svg/user.svg";
+import CountryIcon from "@/assets/svg/country.svg";
+import DownloadIos from "@/assets/svg/download-ios.svg";
+import DownloadAndroid from "@/assets/svg/download-android.svg";
+import TwitterIcon from "@/assets/svg/twitter.svg";
+import FacebookIcon from "@/assets/svg/facebook.svg";
+import BizIcon from "@/assets/svg/biz_logo.svg";
+import MailIcon from "@/assets/svg/mail-outline.svg";
+import LaunchIcon from "@/assets/svg/launch_black.svg";
+
+const isOpen = ref(false);
+
+const clickMenu = () => {
+  isOpen.value = !isOpen.value;
+  console.log("click発動");
+};
+
+const clickClose = () => {
+  isOpen.value = false;
+  console.log("blur発動");
+};
+
+const onClickButton = () => {
+  location.href = "#";
+  console.log("ckick発動");
+};
+
+const onClick = (url) => {
+  location.href = url;
+  console.log("ckick発動");
+};
+
+const items = ref([
+  {
+    url: "#",
+    name: "法人プラン",
+  },
+  {
+    url: "#",
+    name: "言語",
+    children: [
+      {
+        url: "#",
+        name: "日本語",
+      },
+      {
+        url: "#",
+        name: "英語",
+      },
+    ],
+  },
+  {
+    url: "#",
+    name: "ログイン",
+  },
+  {
+    url: "#",
+    name: "無料会員登録",
+  },
+]);
+const humanDatas = ref([
+  {
+    name: "茂木優太",
+    message:
+      "「プログラミングで人生180度変わった。」小学生がJavaScriptでゲーム開発するようになるまで ",
+    image: require("@/assets/1570587077399.png"),
+    url: "#",
+  },
+  {
+    name: "林亮輔",
+    message:
+      "「プログラミングはもうやりたくなかったけど必要に迫られて」 mikanグロースハッカーの超実践SQL活用法",
+    image: require("@/assets/1566914605258.png"),
+    url: "#",
+  },
+  {
+    name: "十時健吾",
+    message:
+      "「私、プログラミングできるかも。」アプリ版Progateから2ヶ月で、アイドルからエンジニアに転職した話",
+    image: require("@/assets/1565058933263.png"),
+    url: "#",
+  },
+  {
+    name: "半澤拓実",
+    message:
+      "「起業準備はProgateしかしてません」 YOUTRUST代表岩崎由夏のプログラミング勉強法",
+    image: require("@/assets/1561420948224.jpeg"),
+    url: "#",
+  },
+  {
+    name: "藤澤大成",
+    message:
+      "「夢みていたところで働けるのは幸せです」プログラミング未経験者が憧れのBASEで働くまで",
+    image: require("@/assets/1560417815612.jpeg"),
+    url: "#",
+  },
+  {
+    name: "中原一馬",
+    message:
+      "「教育現場にエンジニア経験を還元したい!」元小学校教員エンジニアが叶えたい夢とは",
+    image: require("@/assets/1560417763917.jpeg"),
+    url: "#",
+  },
+]);
 </script>
 
 <template>
   <div class="progate-top">
-    <div>{{ msg }}</div>
-
     <div class="header">
-      <div class="progate-logo">
-        <img
-          src="@/assets/typo_logo-b40bf595603dc0e63a5c..svg"
-          alt="progate-ロゴ"
-        />
-      </div>
+      <a href="#" class="icon-link"><ProgateIcon class="progate-icon" /></a>
+
       <div class="header-tag">
-        <a href="" class="header-tag-link">法人プラン</a>
-        <div>
-          <a @click="showLanguage" class="header-tag-link">言語</a>
-          <a class="header-tag-link">{{ msg }}</a>
-          <a class="header-tag-link">{{ msg }}</a>
-        </div>
-        <a href="" class="header-tag-link">ログイン</a>
-        <a href="" class="header-tag-link">無料会員登録</a>
+        <ul class="header-list">
+          <li v-for="(item, i) in items" :key="i">
+            <button
+              v-if="!item.children"
+              class="header-tag-button"
+              @click="onClick(item.url)"
+            >
+              {{ item.name }}
+            </button>
+            <button
+              v-else
+              @click="clickMenu"
+              @blur="clickClose"
+              class="header-tag-button"
+            >
+              {{ item.name }}<span><ArrowDown class="arrow-down-icon" /></span>
+
+              <ul class="dropdown" :class="{ isOpen }">
+                <li v-for="(child, i) in item.children" :key="i">
+                  <button>{{ child.name }}</button>
+                </li>
+              </ul>
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
 
     <div class="main">
       <div class="introduction">
-        <h1>プログラミングで<br />人生の可能性を広げよう</h1>
+        <h1 class="introduction-text">
+          プログラミングで<br />人生の可能性を広げよう
+        </h1>
         <div class="user-country">
-          <div class="user">
-            <img
-              src="@/assets/users-a679d89a2eda53806fb8..svg"
-              alt="user-ロゴ"
-            />
-            <span>2,500,000ユーザー</span>
-          </div>
-          <div class="country">
-            <img
-              src="@/assets/countries-8efc3c1c1ec2f954738c..svg"
-              alt="user-ロゴ"
-            />
-            <span>提供国数 100+</span>
-          </div>
+          <UserIcon class="user-icon" />
+
+          <span class="user-margin-right">2,500,000ユーザー</span>
+
+          <CountryIcon class="country-icon" />
+          <span>提供国数 100+</span>
         </div>
-        <button class="start-bottom">今すぐにはじめる</button>
+        <button @click="onClickButton" class="start-bottom">
+          今すぐにはじめる
+        </button>
         <div class="img-w100">
           <img
             src="@/assets/first_view_ja-ab351ae2e2501cc8bff6..webp"
@@ -56,7 +168,7 @@ const msg = ref("hello");
       </div>
 
       <div class="flow">
-        <h1>初心者から、創れる人へ</h1>
+        <h1 class="flow-text">初心者から、創れる人へ</h1>
         <div class="img-w80">
           <img
             src="@/assets/slide_image_jp-42aa3c4af733b44f6d51..webp"
@@ -90,80 +202,32 @@ const msg = ref("hello");
       </div>
 
       <div class="success-story">
-        <h1>サクセスストーリー</h1>
-        <p>
+        <h1 class="success-story-title color-white">サクセスストーリー</h1>
+        <p class="color-white">
           プログラミングの世界への第一歩を踏み出し、夢を実現した方々のサクセスストーリーを紹介します。
         </p>
+
         <div class="person">
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1570587077399.png" alt="村尾くん" />
-              <p>
-                「プログラミングで人生180度変わった。」小学生がJavaScriptでゲーム開発するようになるまで
-              </p>
-              <p>村尾くん</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1566914605258.png" alt="飯田さん" />
-              <p>
-                「プログラミングはもうやりたくなかったけど必要に迫られて」 mikan
-                グロースハッカーの超実践SQL活用法
-              </p>
-              <p>飯田 諒</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1565058933263.png" alt="五十嵐さん" />
-              <p>
-                「私、プログラミングできるかも。」アプリ版Progateから2ヶ月で、アイドルからエンジニアに転職した話
-              </p>
-              <p>五十嵐 夏菜</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1561420948224.jpeg" alt="岩崎さん" />
-              <p>
-                「起業準備はProgateしかしてません」 YOUTRUST代表
-                岩崎由夏のプログラミング勉強法
-              </p>
-              <p>岩崎 由夏</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1560417815612.jpeg" alt="三佐和さん" />
-              <p>
-                「夢みていたところで働けるのは幸せです」プログラミング未経験者が憧れのBASEで働くまで
-              </p>
-              <p>三佐和 千鶴</p>
-              <p>japan</p>
-            </div>
-          </div>
-          <div class="box">
-            <div class="story">
-              <img src="@/assets/1560417763917.jpeg" alt="三浦さん" />
-              <p>
-                「教育現場にエンジニア経験を還元したい!」元小学校教員エンジニアが叶えたい夢とは
-              </p>
-              <p>三浦卓馬</p>
-              <p>japan</p>
-            </div>
+          <div v-for="(humanData, i) in humanDatas" :key="i" class="box">
+            <a :href="humanData.url">
+              <div class="story">
+                <img :src="humanData.image" alt="個人写真" />
+                <p class="human-message">
+                  {{ humanData.message }}
+                </p>
+                <p class="human-name">{{ humanData.name }}</p>
+                <p class="country-name">japan</p>
+              </div>
+            </a>
           </div>
         </div>
-        <a href="">もっと見る</a>
+
+        <button @click="onClickButton" class="more-button">もっと見る</button>
       </div>
 
       <div class="course-plan">
         <div class="find-lesson">
-          <div class="img2">
+          <div class="find-lesson-img">
             <img
               src="@/assets/plan_section_main-3a91657a6381dac7469a..webp"
               alt="findイメージ"
@@ -189,7 +253,9 @@ const msg = ref("hello");
           </div>
         </div>
         <div class="lesson-information">
-          <a href="">レッスンの公開状況</a>
+          <a href="#" class="lesson-information-text"
+            >レッスンの公開状況<LaunchIcon class="launch-icon"
+          /></a>
         </div>
       </div>
 
@@ -199,35 +265,22 @@ const msg = ref("hello");
           <p>「まずは気軽に始めてみたい」という方にオススメです。</p>
         </div>
         <div class="application-text-img">
-          <div class="application-text">
-            <h3>いつでもどこでもプログラミング</h3>
-            <p class="application-text-paragraph">
+          <div class="application-text color-white">
+            <h3 class="color-white">いつでもどこでもプログラミング</h3>
+            <p class="application-text-paragraph color-white">
               まとまった時間がなくても大丈夫。アプリならスマホゲーム感覚で楽しく始められます。
             </p>
-            <h3>アプリならではの学習体験</h3>
-            <p>
+            <h3 class="color-white">アプリならではの学習体験</h3>
+            <p class="application-text-paragraph color-white">
               スマホやタブレットの画面に最適化したスライドとキーボードを用意しています。アプリ版でサクっと理解したら、Web版で本格的に実践するのがオススメです。
             </p>
             <div class="download">
-              <a
-                href="https://apps.apple.com/jp/app/yahoo-%E3%83%A1%E3%83%BC%E3%83%AB/id669931877?mt=8"
-                style="
-                  display: inline-block;
-                  overflow: hidden;
-                  background: url(https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2013-09-18&kind=iossoftware&bubble=ios_apps)
-                    no-repeat;
-                  width: 200px;
-                  height: 60px;
-                  background-size: contain;
-                "
-              ></a>
+              <a href="https://itunes.apple.com/jp/app/id1335868128?mt=8"
+                ><DownloadIos class="download-ios-icon"
+              /></a>
               <a
                 href="https://play.google.com/store/apps/details?id=com.yuyosoft.globalspy&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
-                ><img
-                  alt="Google Play で手に入れよう"
-                  src="https://play.google.com/intl/en_us/badges/static/images/badges/ja_badge_web_generic.png"
-                  width="200"
-                  style="margin-top: -32px"
+                ><DownloadAndroid class="download-sndroid-icon"
               /></a>
             </div>
           </div>
@@ -257,47 +310,35 @@ const msg = ref("hello");
         <p class="lets-start-paragraph">
           1分後、プログラミングの世界でお会いしましょう。
         </p>
-        <button class="start-bottom">無料会員登録</button>
+        <button @click="onClickButton" class="start-bottom">
+          無料会員登録
+        </button>
       </div>
+    </div>
 
-      <div class="twi-face">
-        <div class="twi-img">
-          <img
-            src="@/assets/twitter-0bbc0e003ac1f36cd2ef..svg"
-            alt="twi-イメージ"
-          />
-        </div>
-        <div class="face-img">
-          <img
-            src="@/assets/facebook-e14b50ed4aca3144e275..svg"
-            alt="face-イメージ"
-          />
-        </div>
-      </div>
+    <div class="twi-face">
+      <a href="#"><TwitterIcon class="sns-icon" /></a>
+      <a href="#"><FacebookIcon class="sns-icon" /></a>
     </div>
 
     <div class="footer">
       <div class="left1">
-        <div class="progate-logo">
-          <img
-            src="@/assets/typo_logo-b40bf595603dc0e63a5c..svg"
-            alt="progate-ロゴ"
-          />
+        <a href="#"><ProgateIcon class="progate-icon-footer" /></a>
+
+        <p class="app-paragraph">アプリ版のダウンロードはこちら</p>
+        <div>
+          <a href="https://itunes.apple.com/jp/app/id1335868128?mt=8"
+            ><DownloadIos class="download-ios-icon"
+          /></a>
         </div>
-        <p class="footer-paragraph">アプリ版のダウンロードはこちら</p>
-        <div class="downlod-ios-logo">
-          <img
-            src="@/assets/download-ios-701013f2027553d61911..svg"
-            alt="ios-ロゴ"
-          />
+        <div>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.yuyosoft.globalspy&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+            ><DownloadAndroid class="download-sndroid-icon"
+          /></a>
         </div>
-        <div class="download-android-logo">
-          <img
-            src="@/assets/download-android-2469951b8a1091077c28..svg"
-            alt="android-ロゴ"
-          />
-        </div>
-        <p class="footer-paragraph">© 2014 Progate, Inc.</p>
+
+        <p class="copyright">© 2014 Progate, Inc.</p>
       </div>
 
       <div class="left2">
@@ -325,12 +366,8 @@ const msg = ref("hello");
 
       <div class="left4">
         <h4>法人向けサービス</h4>
-        <div class="biz-logo">
-          <img
-            src="@/assets/biz_logo_ja-98cf7067364efcd4f1899de2266450871bcdd0a0c617517ac3ae738aaa340963.svg"
-            alt="biz-ロゴ"
-          />
-        </div>
+        <a href="#"><BizIcon class="biz-icon" /></a>
+
         <p class="footer-paragraph">
           企業のプログラミング研修を支援する、法人のお客様向けの利用プランです。
         </p>
@@ -338,7 +375,9 @@ const msg = ref("hello");
     </div>
 
     <div class="mail-box">
-      <a href="">ご意見箱</a>
+      <button @click="onClickButton" class="mail-box-button">
+        <MailIcon class="mail-icon" />ご意見箱
+      </button>
     </div>
   </div>
 </template>
@@ -346,6 +385,10 @@ const msg = ref("hello");
 <style scoped>
 .progate-top {
   max-width: 1440px;
+  color: #2b546a;
+  overflow: hidden;
+  position: absolute;
+  left: 0%;
 }
 a {
   text-decoration: none;
@@ -354,28 +397,109 @@ a {
 p {
   margin: 0 auto;
 }
-
-.progate-logo {
-  width: 112px;
-  height: 30px;
+button {
+  cursor: pointer;
 }
-
 .header {
   background-color: #f9fbfe;
-  width: 100%;
   display: flex;
-  padding: 24px 32px;
-  margin: 0 auto;
+  padding: 10px 28px;
+  left: 0%;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  top: 0;
+  z-index: 100;
+}
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progate-icon {
+  width: 112px;
+  height: 30px;
+  padding: 20px;
 }
 
 .header-tag {
   margin-left: auto;
 }
-.header-tag-link {
-  margin-left: 32px;
+.header-list {
+  display: flex;
+  list-style-type: none;
 }
+
+.header-tag-button {
+  position: relative;
+  display: block;
+  height: auto;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #2b546a;
+  border-radius: 5%;
+}
+.header-tag-button:hover {
+  background-color: rgb(240, 244, 249); /* 背景色 */
+}
+.arrow-down-icon {
+  vertical-align: -8px;
+}
+.header-tag li:nth-of-type(4) {
+  background-color: #8be0e6;
+  border-radius: 10%;
+}
+.header-tag li:nth-of-type(4) button {
+  color: white;
+  border-radius: 10%;
+  transition: 0.3s;
+  height: 44px;
+}
+.header-tag li:nth-of-type(4) :hover {
+  background-color: rgb(36 150 161);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  padding: 0;
+  list-style-type: none;
+  background-color: white;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.5);
+}
+.dropdown button:hover {
+  background-color: rgb(240, 244, 249); /* 背景色 */
+}
+
+.dropdown li {
+  width: 140px;
+}
+
+.dropdown li button {
+  display: block;
+  padding: 10px 30px;
+  color: #2b546a;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.isOpen {
+  display: block;
+}
+
 .asignBottom {
-  background-color: rgb(48, 200, 214);
+  background-color: rgb(223, 232, 233);
   background-size: 110px 40px;
   width: 110px;
   height: 40px;
@@ -383,14 +507,22 @@ p {
 }
 .main {
   background-color: #f9fbfe;
+  padding: 120px 0 50px 0;
 }
 .introduction {
   text-align: center;
   background-color: #f9fbfe;
 }
+.introduction-text {
+  font-size: 48px;
+}
+
 .user-country {
   display: flex;
   justify-content: center;
+}
+.user-margin-right {
+  margin-right: 20px;
 }
 .user,
 .country {
@@ -404,9 +536,9 @@ p {
   color: rgb(255, 255, 255);
   border-radius: 5px;
   padding: 20px 50px;
+  margin-top: 40px;
   border: 0;
   transition: 0.3s;
-  cursor: pointer;
 }
 button:hover {
   background-color: #0ccef0; /* 背景色 */
@@ -414,6 +546,10 @@ button:hover {
 .img-w100 img {
   width: 100%;
   margin-top: 30px;
+  margin-bottom: 30px;
+}
+.flow-text {
+  font-size: 48px;
 }
 
 .flow {
@@ -431,7 +567,7 @@ button:hover {
   text-align: center;
   width: 100%;
 }
-.success-story h1 {
+.success-story-title {
   padding: 60px 0 10px 0;
 }
 .person {
@@ -439,22 +575,54 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .box {
-  width: 30%;
+  width: 24%;
   background-color: white;
   margin: 15px;
   border-radius: 5%;
+  transition-duration: 0.3s;
+}
+.box:hover {
+  transform: scale(102%);
+}
+.human-message {
+  margin: 30px 0 40px 0;
+  color: #2b546a;
+  font-weight: bold;
 }
 .box img {
   border-radius: 50%;
 }
 .story {
   width: 80%;
-  height: 80%;
-  margin: 40px auto;
+  height: auto;
+  margin: 0 auto;
 }
+
 .story img {
   width: 40%;
+  margin-top: 30px;
+}
+.country-name {
+  padding-bottom: 30px;
+}
+
+.more-button {
+  background-color: rgb(240, 244, 249);
+  padding: 0px 16px;
+  border: none;
+  min-width: 200px;
+  line-height: 48px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #16325c;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  transition: 0.3s;
+}
+.more-button:hover {
+  background-color: #8be0e6;
 }
 
 .find-lesson {
@@ -464,14 +632,14 @@ button:hover {
   margin: 30px auto 50px auto;
   border-radius: 5%;
 }
-.img2 {
+.find-lesson-img {
   width: 40%;
 }
 .find-lesson-text {
   width: 60%;
   margin: auto auto auto 60px;
 }
-.img2 img {
+.find-lesson-img img {
   width: 100%;
 }
 .find-lesson-text h2 {
@@ -498,7 +666,14 @@ button:hover {
 }
 .lesson-information {
   width: 80%;
-  margin: 0 auto;
+  margin: 20px auto;
+}
+.lesson-information-text {
+  color: #0070d2;
+}
+.launch-icon {
+  fill: #0070d2;
+  vertical-align: -7px;
 }
 .application {
   width: 80%;
@@ -507,21 +682,29 @@ button:hover {
 .application-title {
   text-align: center;
 }
+.download {
+  margin: 100px 0 30px 0;
+}
 .application-text-img {
   display: flex;
   background-color: #90c3f0;
   border-radius: 5%;
-  padding: 50px;
+  padding: 50px 0 0 50px;
   margin-top: 40px;
 }
 .application-text {
   width: 50%;
-  margin: 40px auto;
 }
 .application-text-paragraph {
   margin: 0%;
+  width: 80%;
 }
-
+.color-white {
+  color: white;
+}
+.download img {
+  margin-top: 80px;
+}
 .application-img {
   width: 50%;
   margin: 40px auto 0 auto;
@@ -544,15 +727,16 @@ button:hover {
 }
 
 .twi-face {
-  display: flex;
-  justify-content: center;
-  margin: 100px 0 50px 0;
+  text-align: center;
+  margin-top: 50px;
+  padding-bottom: 50px;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #eee;
 }
-.twi-img,
-.face-img {
-  margin: 0 20px;
+.sns-icon {
+  margin: 0 10px;
 }
-
 .footer {
   display: flex;
   margin: 40px auto;
@@ -560,9 +744,15 @@ button:hover {
 }
 .footer-link {
   display: block;
+  font-size: 12px;
+  margin-bottom: 12px;
 }
+
 .footer-paragraph {
   margin: 0%;
+}
+.copyright {
+  font-size: 10px;
 }
 .left1 {
   width: 30%;
@@ -578,5 +768,54 @@ button:hover {
 }
 .left4 img {
   width: 90%;
+}
+.download-ios-icon {
+  padding-top: 15px;
+}
+.download-android-icon {
+  padding-bottom: 30px;
+}
+.footer-paragraph {
+  font-size: 12px;
+  padding: 30px 30px 0 30px;
+}
+.progate-icon {
+  width: 112px;
+}
+.progate-icon-footer {
+  width: 144px;
+  margin: 30px 0 100px 0;
+}
+.biz-icon {
+  width: 200px;
+  height: auto;
+  padding: 20px 20px 10px 20px;
+  background-color: white;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.5);
+}
+
+.mail-box-button {
+  color: white;
+  font-size: 12px;
+  position: fixed;
+  background-color: #ff577b;
+  border-radius: 3px 3px 0 0;
+  bottom: 0;
+  right: 12px;
+  min-width: 120px;
+  line-height: 34px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+}
+.mail-box-button:hover {
+  background-color: #c74460;
+}
+.mail-icon {
+  fill: white;
+  width: 14px;
+  vertical-align: -2px;
 }
 </style>
