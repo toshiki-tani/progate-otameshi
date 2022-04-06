@@ -66,9 +66,14 @@ const items = ref([
             {{ item.name }}
           </button>
 
-          <button v-else @click="clickMenu" class="header-tag-button">
+          <button
+            v-else
+            @click="clickMenu"
+            @blur="clickClose"
+            class="header-tag-button"
+          >
             {{ item.name }}<span><ArrowDown class="arrow-down-icon" /></span>
-            <Menu :items="item.children" @blur="clickClose" v-if="isOpen" />
+            <Menu :items="item.children" v-if="isOpen" />
           </button>
         </li>
       </ul>
