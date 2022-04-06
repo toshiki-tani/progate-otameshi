@@ -1,62 +1,22 @@
 <script setup>
 import { ref } from "vue";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import BaseButton2 from "@/components/atoms/BaseButton2";
 
-import ProgateIcon from "@/assets/svg/progate-icon.svg";
-import ArrowDown from "@/assets/svg/arrow_drop_down.svg";
 import UserIcon from "@/assets/svg/user.svg";
 import CountryIcon from "@/assets/svg/country.svg";
 import DownloadIos from "@/assets/svg/download-ios.svg";
 import DownloadAndroid from "@/assets/svg/download-android.svg";
+import LaunchIcon from "@/assets/svg/launch_black.svg";
 import TwitterIcon from "@/assets/svg/twitter.svg";
 import FacebookIcon from "@/assets/svg/facebook.svg";
-import BizIcon from "@/assets/svg/biz_logo.svg";
-import MailIcon from "@/assets/svg/mail-outline.svg";
-import LaunchIcon from "@/assets/svg/launch_black.svg";
 
-const isOpen = ref(false);
-
-const open = () => {
-  isOpen.value = !isOpen.value;
-  console.log("click発動");
+const onClickButton = () => {
+  location.href = "#";
+  console.log("ckick発動");
 };
 
-const close = () => {
-  isOpen.value = false;
-  console.log("blur発動");
-};
-
-const onClick = (url) => {
-  location.href(url);
-};
-
-const items = ref([
-  {
-    url: "#",
-    name: "法人プラン",
-  },
-  {
-    url: "#",
-    name: "言語",
-    children: [
-      {
-        url: "#",
-        name: "日本語",
-      },
-      {
-        url: "#",
-        name: "英語",
-      },
-    ],
-  },
-  {
-    url: "#",
-    name: "ログイン",
-  },
-  {
-    url: "#",
-    name: "無料会員登録",
-  },
-]);
 const humanDatas = ref([
   {
     name: "茂木優太",
@@ -105,52 +65,22 @@ const humanDatas = ref([
 
 <template>
   <div class="progate-top">
-    <div class="header">
-      <a href="#" class="icon-link"><ProgateIcon class="progate-icon" /></a>
-
-      <div class="header-tag">
-        <ul class="header-list">
-          <li v-for="(item, i) in items" :key="i">
-            <button
-              v-if="!item.children"
-              class="header-tag-button"
-              @click="onClick(item.url)"
-            >
-              {{ item.name }}
-            </button>
-            <button
-              v-else
-              @click="open"
-              @blur="close"
-              class="header-tag-button"
-            >
-              {{ item.name }}<span><ArrowDown class="arrow-down-icon" /></span>
-
-              <ul class="dropdown" :class="{ isOpen }">
-                <li v-for="(child, i) in item.children" :key="i">
-                  <button>{{ child.name }}</button>
-                </li>
-              </ul>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <Header />
 
     <div class="main">
       <div class="introduction">
-        <h1 class="text-48px">プログラミングで<br />人生の可能性を広げよう</h1>
+        <h1 class="introduction-text">
+          プログラミングで<br />人生の可能性を広げよう
+        </h1>
         <div class="user-country">
           <UserIcon class="user-icon" />
-          <span>2,500,000ユーザー&nbsp;&nbsp;&nbsp;</span>
+
+          <span class="user-margin-right">2,500,000ユーザー</span>
 
           <CountryIcon class="country-icon" />
-
           <span>提供国数 100+</span>
         </div>
-        <button onclick="location.href='#'" class="start-bottom">
-          今すぐにはじめる
-        </button>
+        <BaseButton2 @onClick="onClickButton" text="今すぐにはじめる" />
         <div class="img-w100">
           <img
             src="@/assets/first_view_ja-ab351ae2e2501cc8bff6..webp"
@@ -214,9 +144,7 @@ const humanDatas = ref([
           </div>
         </div>
 
-        <button onclick="location.href='#'" class="more-button">
-          もっと見る
-        </button>
+        <button @click="onClickButton" class="more-button">もっと見る</button>
       </div>
 
       <div class="course-plan">
@@ -304,9 +232,7 @@ const humanDatas = ref([
         <p class="lets-start-paragraph">
           1分後、プログラミングの世界でお会いしましょう。
         </p>
-        <button onclick="location.href='#'" class="start-bottom">
-          無料会員登録
-        </button>
+        <BaseButton2 @onClick="onClickButton" text="無料会員登録" />
       </div>
     </div>
 
@@ -315,64 +241,7 @@ const humanDatas = ref([
       <a href="#"><FacebookIcon class="sns-icon" /></a>
     </div>
 
-    <div class="footer">
-      <div class="left1">
-        <a href="#"><ProgateIcon class="progate-icon-footer" /></a>
-
-        <p class="app-paragraph">アプリ版のダウンロードはこちら</p>
-        <div>
-          <a href="https://itunes.apple.com/jp/app/id1335868128?mt=8"
-            ><DownloadIos class="download-ios-icon"
-          /></a>
-        </div>
-        <div>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.yuyosoft.globalspy&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
-            ><DownloadAndroid class="download-sndroid-icon"
-          /></a>
-        </div>
-
-        <p class="copyright">© 2014 Progate, Inc.</p>
-      </div>
-
-      <div class="left2">
-        <h4>サービス</h4>
-        <a href="" class="footer-link">コース一覧</a>
-        <a href="" class="footer-link">有料会員プラン</a>
-        <a href="" class="footer-link">中学・高校向けプラン</a>
-        <a href="" class="footer-link">学習ロードマップ</a>
-        <a href="" class="footer-link">サクセスストーリー</a>
-        <a href="" class="footer-link">ヘルプ</a>
-      </div>
-
-      <div class="left3">
-        <h4>サポート</h4>
-        <a href="" class="footer-link">運営会社</a>
-        <a href="" class="footer-link">採用情報</a>
-        <a href="" class="footer-link">利用規約</a>
-        <a href="" class="footer-link">法人プラン利用規約</a>
-        <a href="" class="footer-link">特定商取引法に基づく表示</a>
-        <a href="" class="footer-link">プライバシーポリシー</a>
-        <h4>SNS</h4>
-        <a href="" class="footer-link">Facebook</a>
-        <a href="" class="footer-link">Twitter</a>
-      </div>
-
-      <div class="left4">
-        <h4>法人向けサービス</h4>
-        <a href="#"><BizIcon class="biz-icon" /></a>
-
-        <p class="footer-paragraph">
-          企業のプログラミング研修を支援する、法人のお客様向けの利用プランです。
-        </p>
-      </div>
-    </div>
-
-    <div class="mail-box">
-      <button onclick="location.href='#'" class="mail-box-button">
-        <MailIcon class="mail-icon" />ご意見箱
-      </button>
-    </div>
+    <Footer />
   </div>
 </template>
 
@@ -394,104 +263,6 @@ p {
 button {
   cursor: pointer;
 }
-.header {
-  background-color: #f9fbfe;
-  display: flex;
-  padding: 10px 28px;
-  left: 0%;
-  position: fixed;
-  width: 100%;
-  box-sizing: border-box;
-  top: 0;
-  z-index: 100;
-}
-.icon-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.progate-icon {
-  width: 112px;
-  height: 30px;
-  padding: 20px;
-}
-
-.header-tag {
-  margin-left: auto;
-}
-.header-list {
-  display: flex;
-  list-style-type: none;
-}
-
-.header-tag-button {
-  position: relative;
-  display: block;
-  height: auto;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-size: 14px;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: #2b546a;
-  border-radius: 5%;
-}
-.header-tag-button:hover {
-  background-color: rgb(240, 244, 249); /* 背景色 */
-}
-.arrow-down-icon {
-  vertical-align: -8px;
-}
-.header-tag li:nth-of-type(4) {
-  background-color: #8be0e6;
-  border-radius: 10%;
-  /* pointer-events: none; */
-}
-.header-tag li:nth-of-type(4) button {
-  color: white;
-  border-radius: 10%;
-  transition: 0.3s;
-  height: 44px;
-}
-.header-tag li:nth-of-type(4) :hover {
-  background-color: rgb(36 150 161);
-}
-
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: none;
-  padding: 0;
-  list-style-type: none;
-  background-color: white;
-  transition: 0.3s;
-  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.5);
-}
-.dropdown button:hover {
-  background-color: rgb(240, 244, 249); /* 背景色 */
-}
-
-.dropdown li {
-  width: 140px;
-}
-
-.dropdown li button {
-  display: block;
-  padding: 10px 30px;
-  color: #2b546a;
-  text-decoration: none;
-  border: none;
-  outline: none;
-  background: transparent;
-  width: 100%;
-  text-align: left;
-}
-
-.isOpen {
-  display: block;
-}
 
 .asignBottom {
   background-color: rgb(223, 232, 233);
@@ -508,30 +279,22 @@ button {
   text-align: center;
   background-color: #f9fbfe;
 }
+.introduction-text {
+  font-size: 48px;
+}
 
 .user-country {
   display: flex;
   justify-content: center;
 }
+.user-margin-right {
+  margin-right: 20px;
+}
 .user,
 .country {
   margin: 10px 10px 70px 10px;
 }
-.start-bottom {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: rgb(48, 200, 214);
-  color: rgb(255, 255, 255);
-  border-radius: 5px;
-  padding: 20px 50px;
-  margin-top: 40px;
-  border: 0;
-  transition: 0.3s;
-}
-button:hover {
-  background-color: #0ccef0; /* 背景色 */
-}
+
 .img-w100 img {
   width: 100%;
   margin-top: 30px;
@@ -726,85 +489,9 @@ button:hover {
 .sns-icon {
   margin: 0 10px;
 }
-.footer {
-  display: flex;
-  margin: 40px auto;
-  width: 80%;
-}
-.footer-link {
-  display: block;
-  font-size: 12px;
-  margin-bottom: 12px;
-}
-
-.footer-paragraph {
-  margin: 0%;
-}
-.copyright {
-  font-size: 10px;
-}
-.left1 {
-  width: 30%;
-}
-.left2 {
-  width: 20%;
-}
-.left3 {
-  width: 20%;
-}
-.left4 {
-  width: 30%;
-}
-.left4 img {
-  width: 90%;
-}
-.download-ios-icon {
-  padding-top: 15px;
-}
-.download-android-icon {
-  padding-bottom: 30px;
-}
-.footer-paragraph {
-  font-size: 12px;
-  padding: 30px 30px 0 30px;
-}
-.progate-icon {
-  width: 112px;
-}
-.progate-icon-footer {
-  width: 144px;
-  margin: 30px 0 100px 0;
-}
-.biz-icon {
-  width: 200px;
-  height: auto;
-  padding: 20px 20px 10px 20px;
-  background-color: white;
-  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.5);
-}
-
-.mail-box-button {
-  color: white;
-  font-size: 12px;
-  position: fixed;
-  background-color: #ff577b;
-  border-radius: 3px 3px 0 0;
-  bottom: 0;
-  right: 12px;
-  min-width: 120px;
-  line-height: 34px;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  outline: none;
-  transition: 0.3s;
-}
-.mail-box-button:hover {
-  background-color: #c74460;
-}
-.mail-icon {
-  fill: white;
-  width: 14px;
-  vertical-align: -2px;
+@media screen and (max-width: 850px) {
+  .box {
+    width: 40%;
+  }
 }
 </style>
