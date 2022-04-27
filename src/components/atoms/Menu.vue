@@ -1,19 +1,23 @@
 <script setup>
-// import { defineProps, defineEmits } from "vue";
-import { defineProps } from "vue";
+import { defineProps, defineEmits } from "vue";
+// import { defineProps } from "vue";
+
 const props = defineProps({
   items: Array,
 });
 
-// const emit = defineEmits(["changeLanguage"]);
-// const changeLanguage = (url) => {
-//   console.log("言語切り替え");
-//   emit("changeLanguage", url);
+const emit = defineEmits(["away"]);
+const away = () => {
+  console.log("モーダルとじ");
+  emit("away");
+};
+// const away = () => {
+//   console.log("ここにemit書くだけ");
 // };
 </script>
 
 <template>
-  <div>
+  <div v-click-away="away">
     <ul class="dropdown">
       <li v-for="(item, i) in props.items" :key="i">
         <a :href="item.url">
@@ -30,13 +34,14 @@ const props = defineProps({
   top: 100%;
   left: 0;
   padding: 0;
-  list-style-type: none;
+
   background-color: white;
   transition: 0.3s;
   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.5);
 }
 .dropdown li {
   width: 140px;
+  list-style-type: none;
 }
 
 .dropdown a {
