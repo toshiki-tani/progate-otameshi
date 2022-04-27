@@ -12,11 +12,6 @@ const clickMenu = () => {
   console.log("click発動");
 };
 
-const clickClose = () => {
-  isOpen.value = false;
-  console.log("blur発動");
-};
-
 const onClick = (url) => {
   location.href = url;
   console.log("ページ切り替え１");
@@ -66,12 +61,7 @@ const items = ref([
             {{ item.name }}
           </button>
 
-          <button
-            v-else
-            @click="clickMenu"
-            @blur="clickClose"
-            class="header-tag-button"
-          >
+          <button v-else @click="clickMenu" class="header-tag-button">
             {{ item.name }}<span><ArrowDown class="arrow-down-icon" /></span>
             <Menu :items="item.children" v-if="isOpen" />
           </button>

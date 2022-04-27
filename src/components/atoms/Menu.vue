@@ -1,10 +1,11 @@
 <script setup>
-// import { defineProps, defineEmits } from "vue";
 import { defineProps } from "vue";
 const props = defineProps({
   items: Array,
 });
-
+const away = () => {
+  console.log("ここにemit書くだけ");
+};
 // const emit = defineEmits(["changeLanguage"]);
 // const changeLanguage = (url) => {
 //   console.log("言語切り替え");
@@ -13,12 +14,10 @@ const props = defineProps({
 </script>
 
 <template>
-  <div>
+  <div v-click-away="away">
     <ul class="dropdown">
       <li v-for="(item, i) in props.items" :key="i">
-        <a :href="item.url">
-          {{ item.name }}
-        </a>
+        <a :href="item.url"> {{ item.name }} </a>
       </li>
     </ul>
   </div>
