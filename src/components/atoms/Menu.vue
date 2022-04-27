@@ -1,6 +1,5 @@
 <script setup>
 import { defineProps, defineEmits } from "vue";
-// import { defineProps } from "vue";
 
 const props = defineProps({
   items: Array,
@@ -11,9 +10,6 @@ const away = () => {
   console.log("モーダルとじ");
   emit("away");
 };
-// const away = () => {
-//   console.log("ここにemit書くだけ");
-// };
 </script>
 
 <template>
